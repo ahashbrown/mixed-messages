@@ -17,7 +17,7 @@ function pickActivity() {
 		duration: 0
 	}
 
-	let newGoal = randNum(3);
+	let newGoal = randNum(2) + 1;
 	switch (newGoal) {
 		case 1:
 			activity.goalType = 'moneyMakers'
@@ -27,24 +27,33 @@ function pickActivity() {
 		case 2:
 			activity.goalType = 'bosses'
 			activity.goal = bosses[randNum(bosses.length)]
-			activity.duration = randNum(30) + 1
+			activity.duration = randNum(24) + 1
 			break;
 		case 3:
 			activity.goalType = 'skills'
-			activity.goal = bosses[randNum(bosses.length)]
+			activity.goal = skills[randNum(skills.length)]
 			activity.duration = randNum(2) + 1
 			break;
 		default: 
 			console.log('Error!')
 	}
-	console.log(activity)
+	// console.log(activity)
 	return activity;
 }
 
 //format activity
 function formatActivity(activity) {
 	// @TODO: turn an activity object into a pretty string
-	return activity;
+
+	switch (activity.goalType) {
+		case 'moneyMakers':
+			return `You should try doing ${activity.goal} for ${activity.duration} hours and see what you can make!`;
+		case 'bosses':
+			return `You should try killing ${activity.goal} ${activity.duration} times to see what you can get!`;
+		case 'skills':
+			return `Try training ${activity.goal} for ${activity.duration} hours! It will help you progress to your skillcape!`;
+	}
+	return `error!`
 }
 
 //final 'main' function to be run on script execution
